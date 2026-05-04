@@ -15,6 +15,7 @@ interface FlipCardProps {
   onFlip: () => void;
   activePlayer: 1 | 2;
   cardNumber: number;
+  disabled?: boolean;
 }
 
 export default function FlipCard({
@@ -23,17 +24,18 @@ export default function FlipCard({
   onFlip,
   activePlayer,
   cardNumber,
+  disabled = false,
 }: FlipCardProps) {
   const isP1 = activePlayer === 1;
 
   return (
     <div className="relative w-full max-w-[360px] aspect-[1/1.4] max-h-[52vh] mb-7 perspective-[1400px]">
       <motion.div
-        className="relative w-full h-full cursor-pointer transform-3d"
+        className={`relative w-full h-full transform-3d ${disabled ? "cursor-default" : "cursor-pointer"}`}
         initial={false}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.75, ease: [0.35, 0.15, 0.15, 1] }}
-        onClick={onFlip}
+        onClick={() => !disabled && onFlip()}
       >
         {/* Back of card */}
         <div
@@ -95,13 +97,16 @@ export default function FlipCard({
             {question?.text || "..."}
           </div>
 
-          <div className="flex items-center gap-2.5 mt-auto z-10">
+          <div className="flex items-center gap-2 mt-auto z-10 w-full">
             <div className="flex-1 h-px bg-card-border"></div>
-            <div
-              className={`w-[5px] h-[5px] rounded-full ${
-                isP1 ? "bg-p1" : "bg-p2"
-              }`}
-            ></div>
+            
+            {/* Intensity Meter */}
+            <div className="flex gap-1 items-center px-2">
+              {Array.from({ length: question?.intensity || 1 }).map((_, i) => (
+                <span key={i} className="text-[0.7rem] opacity-80" title={`Intensity: ${question?.intensity}`}>🌶️</span>
+              ))}
+            </div>
+
             <div className="flex-1 h-px bg-card-border"></div>
           </div>
         </div>

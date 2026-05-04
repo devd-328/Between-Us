@@ -5,8 +5,8 @@ import FlipCard from "@/components/FlipCard";
 import QuestionCard from "@/components/QuestionCard";
 import { Question } from "@/lib/questions";
 import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { ArrowLeft, Share2, Loader2, Bookmark, BookmarkCheck, Layers, Users } from "lucide-react";
+import { collection, getDocs, doc, setDoc, updateDoc, onSnapshot, getDoc } from "firebase/firestore";
+import { ArrowLeft, Share2, Loader2, Bookmark, BookmarkCheck, Layers, Users, Flame, Globe2 } from "lucide-react";
 
 // Map raw DB category → display label
 const CAT_MAP: Record<string, string> = {
@@ -21,6 +21,8 @@ const CAT_MAP: Record<string, string> = {
 const FILTERS = ["ALL", "DEEP", "FUN", "US", "WHAT IF", "LATE NIGHT"];
 
 type Mode = "splash" | "browse" | "game";
+
+const generateRoomId = () => Math.random().toString(36).substring(2, 7).toUpperCase();
 
 export default function Home() {
   const [all, setAll] = useState<Question[]>([]);
@@ -43,6 +45,14 @@ export default function Home() {
   const [player, setPlayer] = useState<1 | 2>(1);
   const [inviteText, setInviteText] = useState("Invite");
 
+  // Multi-player state
+  const [playMode, setPlayMode] = useState<"local" | "online">("local");
+  const [intensityPref, setIntensityPref] = useState<number | "random">("random");
+  const [roomIdInput, setRoomIdInput] = useState("");
+  const [onlineRoomId, setOnlineRoomId] = useState<string | null>(null);
+  const [isHost, setIsHost] = useState(true);
+  const [onlineLoading, setOnlineLoading] = useState(false);
+
   useEffect(() => {
     (async () => {
       try {
@@ -55,8 +65,15 @@ export default function Home() {
         });
         const shuffled = qs.sort(() => Math.random() - 0.5);
         setAll(shuffled);
-        setHistory([Math.floor(Math.random() * shuffled.length)]);
-        setHistPos(0);
+        
+        // Parse URL params
+        const params = new URLSearchParams(window.location.search);
+        const room = params.get("room");
+        if (room) {
+          setPlayMode("online");
+          setRoomIdInput(room.toUpperCase());
+          setMode("game");
+        }
       } catch (e) {
         setError((e as Error).message);
       } finally {
@@ -64,6 +81,25 @@ export default function Home() {
       }
     })();
   }, []);
+
+  // Listen to Firestore for online rooms
+  useEffect(() => {
+    if (!onlineRoomId) return;
+    const unsub = onSnapshot(doc(db, "rooms", onlineRoomId), (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.p2 && data.p1) setGameStarted(true); // both joined
+        setP1(data.p1 || "");
+        if (data.p2) setP2(data.p2);
+        setHistory(data.history || []);
+        setHistPos(data.histPos ?? -1);
+        setFlipped(data.flipped || false);
+        setPlayer(data.player || 1);
+        if (data.intensityPref) setIntensityPref(data.intensityPref);
+      }
+    });
+    return () => unsub();
+  }, [onlineRoomId]);
 
   // Derived
   const filtered = filter === "ALL" ? all : all.filter(q => (q.displayCategory ?? "") === filter);
@@ -75,24 +111,131 @@ export default function Home() {
   const toggleSave = (q: Question) =>
     setSaved(prev => prev.some(s => s.id === q.id) ? prev.filter(s => s.id !== q.id) : [...prev, q]);
 
+  const getNextAvailableIndex = (currentHistory: number[], desiredIntensity: number | "random") => {
+    const validIndices = all
+      .map((q, i) => ({ i, q }))
+      .filter(({ q }) => desiredIntensity === "random" || q.intensity === desiredIntensity)
+      .map(({ i }) => i);
+    const avail = validIndices.filter(i => !currentHistory.includes(i));
+    return avail.length ? avail[Math.floor(Math.random() * avail.length)] : (validIndices.length ? validIndices[Math.floor(Math.random() * validIndices.length)] : Math.floor(Math.random() * all.length));
+  };
+
   const nextGame = () => {
-    setFlipped(false);
+    updateFlipped(false);
     setTimeout(() => {
-      const avail = all.map((_, i) => i).filter(i => !history.includes(i));
-      const next = avail.length ? avail[Math.floor(Math.random() * avail.length)] : Math.floor(Math.random() * all.length);
+      const next = getNextAvailableIndex(history, intensityPref);
       const newH = [...history.slice(0, histPos + 1), next];
-      setHistory(newH); setHistPos(newH.length - 1);
-      setPlayer(p => p === 1 ? 2 : 1);
+      const newPlayer = player === 1 ? 2 : 1;
+      
+      if (onlineRoomId) {
+        updateDoc(doc(db, "rooms", onlineRoomId), {
+          history: newH,
+          histPos: newH.length - 1,
+          player: newPlayer,
+          flipped: false
+        });
+      } else {
+        setHistory(newH); 
+        setHistPos(newH.length - 1);
+        setPlayer(newPlayer);
+      }
     }, 400);
   };
 
   const prevGame = () => {
-    if (histPos > 0) { setFlipped(false); setTimeout(() => { setHistPos(h => h - 1); setPlayer(p => p === 1 ? 2 : 1); }, 400); }
+    if (histPos > 0) { 
+      updateFlipped(false); 
+      setTimeout(() => { 
+        const newPlayer = player === 1 ? 2 : 1;
+        if (onlineRoomId) {
+          updateDoc(doc(db, "rooms", onlineRoomId), {
+            histPos: histPos - 1,
+            player: newPlayer,
+            flipped: false
+          });
+        } else {
+          setHistPos(h => h - 1); 
+          setPlayer(newPlayer); 
+        }
+      }, 400); 
+    }
   };
 
+  const updateFlipped = (state: boolean) => {
+    if (onlineRoomId) {
+      updateDoc(doc(db, "rooms", onlineRoomId), { flipped: state });
+    } else {
+      setFlipped(state);
+    }
+  };
+
+  const updatePlayerTurn = (p: 1 | 2) => {
+    if (onlineRoomId) {
+      updateDoc(doc(db, "rooms", onlineRoomId), { player: p });
+    } else {
+      setPlayer(p);
+    }
+  }
+
   const invite = async () => {
-    try { await navigator.clipboard.writeText(window.location.href); } catch {}
+    try {
+      const url = new URL(window.location.href);
+      if (onlineRoomId) url.searchParams.set("room", onlineRoomId);
+      await navigator.clipboard.writeText(url.toString()); 
+    } catch {}
     setInviteText("Copied!"); setTimeout(() => setInviteText("Invite"), 2000);
+  };
+
+  const handleCreateRoom = async () => {
+    if (!p1.trim()) return;
+    setOnlineLoading(true);
+    const roomId = generateRoomId();
+    const startIdx = getNextAvailableIndex([], intensityPref);
+    try {
+      await setDoc(doc(db, "rooms", roomId), {
+        p1: p1.trim(),
+        p2: "",
+        history: [startIdx],
+        histPos: 0,
+        flipped: false,
+        player: 1,
+        intensityPref: intensityPref
+      });
+      setIsHost(true);
+      setOnlineRoomId(roomId);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setOnlineLoading(false);
+    }
+  };
+
+  const handleJoinRoom = async () => {
+    if (!p2.trim() || !roomIdInput.trim()) return;
+    setOnlineLoading(true);
+    try {
+      const roomRef = doc(db, "rooms", roomIdInput.trim().toUpperCase());
+      const roomSnap = await getDoc(roomRef);
+      if (roomSnap.exists()) {
+        await updateDoc(roomRef, { p2: p2.trim() });
+        setIsHost(false);
+        setOnlineRoomId(roomIdInput.trim().toUpperCase());
+      } else {
+        alert("Room not found.");
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setOnlineLoading(false);
+    }
+  };
+
+  const startLocalGame = () => {
+    if (!p1.trim() || !p2.trim()) return;
+    const startIdx = getNextAvailableIndex([], intensityPref);
+    setHistory([startIdx]);
+    setHistPos(0);
+    setGameStarted(true);
   };
 
   const p1Label = p1.trim() || "Player 1";
@@ -244,45 +387,107 @@ export default function Home() {
 
   // ── GAME MODE ───────────────────────────────────────────────────
   if (mode === "game") {
-    // Player name entry
-    if (!gameStarted) return (
-      <main className="flex items-center justify-center min-h-screen px-6 py-10 relative z-10 w-full max-w-[520px] mx-auto">
-        <div className="w-full max-w-[400px] text-center">
-          <button onClick={() => setMode("splash")} className="absolute top-8 left-5 text-text-dim hover:text-text-muted transition-colors p-1">
-            <ArrowLeft size={18} />
-          </button>
-          <h1 className="font-serif text-[2rem] font-light tracking-[0.2em] uppercase text-accent mb-1">Between Us</h1>
-          <div className="text-[0.62rem] tracking-[0.24em] uppercase text-text-dim mb-8">Game Mode</div>
-          <div className="w-[40px] h-px bg-linear-to-r from-transparent via-accent to-transparent mx-auto mb-8" />
-          <div className="text-[0.68rem] tracking-[0.18em] uppercase text-text-muted mb-5">Who is playing?</div>
-          <div className="flex flex-col gap-3 mb-8">
-            {[{ val: p1, set: setP1, color: "bg-p1", ph: "Player 1" }, { val: p2, set: setP2, color: "bg-p2", ph: "Player 2" }].map(({ val, set, color, ph }) => (
-              <div key={ph} className="relative">
-                <div className={`absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${color}`} />
-                <input type="text" placeholder={ph} value={val} onChange={e => set(e.target.value)}
-                  className="w-full bg-bg-panel border border-card-border rounded-xl py-3.5 pr-4 pl-9 text-text-main font-serif text-[1.05rem] font-light tracking-wide outline-none transition-all duration-200 focus:border-text-muted focus:ring-2 focus:ring-[rgba(155,111,168,0.12)] placeholder:text-text-dim" />
+    // Game Setup Screen
+    if (!gameStarted) {
+      if (onlineRoomId && isHost) {
+        // Waiting Lobby for Host
+        return (
+          <main className="flex items-center justify-center min-h-screen px-6 py-10 relative z-10 w-full max-w-[520px] mx-auto">
+            <div className="w-full max-w-[400px] text-center">
+              <button onClick={() => { setOnlineRoomId(null); setMode("splash"); }} className="absolute top-8 left-5 text-text-dim hover:text-text-muted transition-colors p-1">
+                <ArrowLeft size={18} />
+              </button>
+              <h1 className="font-serif text-[2rem] font-light tracking-[0.2em] uppercase text-accent mb-1">Between Us</h1>
+              <div className="text-[0.62rem] tracking-[0.24em] uppercase text-text-dim mb-8">Waiting for partner...</div>
+              
+              <div className="bg-bg-panel border border-card-border rounded-2xl p-8 mb-6">
+                <div className="text-[0.68rem] tracking-[0.18em] uppercase text-text-muted mb-4">Room Code</div>
+                <div className="font-mono text-4xl tracking-[0.2em] text-accent font-medium mb-8">{onlineRoomId}</div>
+                <button onClick={invite}
+                  className="w-full font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-accent-alt rounded-full px-5 py-3.5 text-accent-alt transition-all hover:bg-accent-alt hover:text-white flex items-center justify-center gap-2">
+                  <Share2 size={15} /> {inviteText}
+                </button>
               </div>
-            ))}
-          </div>
-          {loading && (
-            <div className="flex items-center justify-center gap-2 text-text-dim text-[0.62rem] tracking-widest uppercase font-sans mb-4">
-              <Loader2 size={12} className="animate-spin" /><span>Preparing deck…</span>
+              <p className="text-[0.68rem] tracking-wider text-text-muted">The game will start automatically when Player 2 joins.</p>
             </div>
-          )}
-          <button onClick={() => setGameStarted(true)} disabled={loading}
-            className="w-full bg-transparent border border-accent rounded-full py-3.5 px-6 text-accent font-sans text-[0.7rem] tracking-[0.2em] uppercase cursor-pointer transition-all duration-300 relative overflow-hidden group hover:text-bg-base disabled:opacity-40 disabled:cursor-not-allowed">
-            <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10">{loading ? "Loading Deck…" : "Begin Journey"}</span>
-          </button>
-        </div>
-      </main>
-    );
+          </main>
+        );
+      }
+
+      return (
+        <main className="flex items-center justify-center min-h-screen px-6 py-10 relative z-10 w-full max-w-[520px] mx-auto">
+          <div className="w-full max-w-[400px] text-center">
+            <button onClick={() => setMode("splash")} className="absolute top-8 left-5 text-text-dim hover:text-text-muted transition-colors p-1">
+              <ArrowLeft size={18} />
+            </button>
+            <h1 className="font-serif text-[2rem] font-light tracking-[0.2em] uppercase text-accent mb-1">Between Us</h1>
+            <div className="text-[0.62rem] tracking-[0.24em] uppercase text-text-dim mb-6">Game Mode Setup</div>
+            
+            <div className="flex bg-bg-panel border border-card-border rounded-full p-1 mb-8 w-max mx-auto">
+              <button onClick={() => setPlayMode("local")} className={`px-6 py-2 rounded-full text-[0.68rem] tracking-widest uppercase transition-all ${playMode === "local" ? "bg-[rgba(201,169,110,0.15)] text-accent border border-[rgba(201,169,110,0.3)]" : "text-text-dim"}`}>Local</button>
+              <button onClick={() => setPlayMode("online")} className={`px-6 py-2 rounded-full text-[0.68rem] tracking-widest uppercase transition-all ${playMode === "online" ? "bg-[rgba(201,169,110,0.15)] text-accent border border-[rgba(201,169,110,0.3)]" : "text-text-dim"}`}>Online</button>
+            </div>
+
+            <div className="text-[0.68rem] tracking-[0.18em] uppercase text-text-muted mb-4">Who is playing?</div>
+            <div className="flex flex-col gap-3 mb-6">
+              {playMode === "local" ? (
+                <>
+                  <div className="relative"><div className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-p1" /><input type="text" placeholder="Player 1" value={p1} onChange={e => setP1(e.target.value)} className="w-full bg-bg-panel border border-card-border rounded-xl py-3.5 pr-4 pl-9 text-text-main font-serif text-[1.05rem] font-light tracking-wide outline-none transition-all duration-200 focus:border-text-muted focus:ring-2 focus:ring-[rgba(155,111,168,0.12)] placeholder:text-text-dim" /></div>
+                  <div className="relative"><div className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-p2" /><input type="text" placeholder="Player 2" value={p2} onChange={e => setP2(e.target.value)} className="w-full bg-bg-panel border border-card-border rounded-xl py-3.5 pr-4 pl-9 text-text-main font-serif text-[1.05rem] font-light tracking-wide outline-none transition-all duration-200 focus:border-text-muted focus:ring-2 focus:ring-[rgba(155,111,168,0.12)] placeholder:text-text-dim" /></div>
+                </>
+              ) : (
+                <>
+                  <div className="relative"><div className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-p1" /><input type="text" placeholder="Your Name" value={roomIdInput ? p2 : p1} onChange={e => roomIdInput ? setP2(e.target.value) : setP1(e.target.value)} className="w-full bg-bg-panel border border-card-border rounded-xl py-3.5 pr-4 pl-9 text-text-main font-serif text-[1.05rem] font-light tracking-wide outline-none transition-all duration-200 focus:border-text-muted focus:ring-2 focus:ring-[rgba(155,111,168,0.12)] placeholder:text-text-dim" /></div>
+                  <div className="relative"><div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim" ><Globe2 size={14}/></div><input type="text" placeholder="Room Code (Leave empty to create)" value={roomIdInput} onChange={e => setRoomIdInput(e.target.value.toUpperCase())} className="w-full bg-bg-panel border border-card-border rounded-xl py-3.5 pr-4 pl-10 text-text-main font-mono text-[1.05rem] font-light tracking-widest outline-none transition-all duration-200 focus:border-text-muted focus:ring-2 focus:ring-[rgba(155,111,168,0.12)] placeholder:text-text-dim placeholder:tracking-normal placeholder:font-sans placeholder:text-sm uppercase" maxLength={5} /></div>
+                </>
+              )}
+            </div>
+
+            {(!roomIdInput || playMode === "local") && (
+              <div className="mb-8 text-left">
+                <div className="text-[0.68rem] tracking-[0.18em] uppercase text-text-muted mb-3 text-center">Intensity</div>
+                <div className="grid grid-cols-4 gap-2">
+                  {[{v:1, l:"Mild"}, {v:2, l:"Spicy"}, {v:3, l:"Deep"}, {v:"random", l:"Random"}].map(({v,l}) => (
+                    <button key={v} onClick={() => setIntensityPref(v as any)}
+                      className={`flex flex-col items-center gap-1.5 py-3 rounded-xl border transition-all ${intensityPref === v ? "border-rose bg-[rgba(196,116,138,0.1)]" : "border-card-border bg-bg-panel hover:border-text-muted"}`}>
+                      <div className="flex">
+                        {v === "random" ? <Layers size={14} className={intensityPref === v ? "text-rose" : "text-text-dim"}/> : 
+                         Array.from({length: v as number}).map((_, i) => <Flame key={i} size={14} className={`fill-current ${intensityPref === v ? "text-rose" : "text-text-dim"}`} />)}
+                      </div>
+                      <span className={`text-[0.55rem] tracking-wider uppercase ${intensityPref === v ? "text-rose" : "text-text-dim"}`}>{l}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {loading || onlineLoading ? (
+              <div className="flex items-center justify-center gap-2 text-text-dim text-[0.62rem] tracking-widest uppercase font-sans mb-4">
+                <Loader2 size={12} className="animate-spin" /><span>Please wait…</span>
+              </div>
+            ) : (
+              <button 
+                onClick={playMode === "local" ? startLocalGame : (roomIdInput ? handleJoinRoom : handleCreateRoom)}
+                disabled={playMode === "local" ? (!p1.trim() || !p2.trim()) : (roomIdInput ? !p2.trim() : !p1.trim())}
+                className="w-full bg-transparent border border-accent rounded-full py-3.5 px-6 text-accent font-sans text-[0.7rem] tracking-[0.2em] uppercase cursor-pointer transition-all duration-300 relative overflow-hidden group hover:text-bg-base disabled:opacity-40 disabled:cursor-not-allowed">
+                <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10">
+                  {playMode === "local" ? "Begin Journey" : (roomIdInput ? "Join Room" : "Create Room")}
+                </span>
+              </button>
+            )}
+          </div>
+        </main>
+      );
+    }
 
     // Game screen
+    const isMyTurn = !onlineRoomId ? true : (isHost && player === 1) || (!isHost && player === 2);
+
     return (
       <main className="relative z-10 w-full max-w-[520px] px-6 py-10 pb-20 flex flex-col items-center min-h-screen mx-auto">
         <header className="w-full text-center mb-8 relative">
-          <button onClick={() => setGameStarted(false)} className="absolute left-0 top-1/2 -translate-y-1/2 text-text-dim hover:text-text-muted transition-colors p-1">
+          <button onClick={() => { setGameStarted(false); setOnlineRoomId(null); }} className="absolute left-0 top-1/2 -translate-y-1/2 text-text-dim hover:text-text-muted transition-colors p-1">
             <ArrowLeft size={18} />
           </button>
           <h1 className="font-serif text-[1.7rem] font-light tracking-[0.2em] uppercase text-accent">Between Us</h1>
@@ -292,8 +497,8 @@ export default function Home() {
         {/* Turn indicator */}
         <div className="w-full max-w-[380px] flex gap-2 mb-8 bg-bg-panel border border-card-border rounded-full p-1.5">
           {([1, 2] as const).map(p => (
-            <div key={p} onClick={() => setPlayer(p)}
-              className={`flex-1 text-center py-2 px-3 rounded-full text-[0.68rem] tracking-widest uppercase transition-all duration-300 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap ${
+            <div key={p} onClick={() => { if (!onlineRoomId || isMyTurn) updatePlayerTurn(p); }}
+              className={`flex-1 text-center py-2 px-3 rounded-full text-[0.68rem] tracking-widest uppercase transition-all duration-300 ${(!onlineRoomId || isMyTurn) ? 'cursor-pointer' : 'cursor-default'} overflow-hidden text-ellipsis whitespace-nowrap ${
                 player === p
                   ? p === 1 ? "bg-[rgba(201,169,110,0.15)] text-p1 border border-[rgba(201,169,110,0.3)]" : "bg-[rgba(155,111,168,0.15)] text-p2 border border-[rgba(155,111,168,0.3)]"
                   : "text-text-dim border border-transparent"
@@ -304,12 +509,12 @@ export default function Home() {
         </div>
 
         {gameQ
-          ? <FlipCard question={gameQ} isFlipped={flipped} onFlip={() => setFlipped(true)} activePlayer={player} cardNumber={histPos + 1} />
+          ? <FlipCard question={gameQ} isFlipped={flipped} onFlip={() => updateFlipped(true)} activePlayer={player} cardNumber={histPos + 1} disabled={!isMyTurn} />
           : <div className="text-text-dim text-sm tracking-widest uppercase font-sans flex-1 flex items-center">No questions available.</div>
         }
 
         <div className="flex gap-2.5 flex-wrap justify-center mt-6 w-full max-w-[360px]">
-          <button onClick={prevGame} disabled={histPos <= 0}
+          <button onClick={prevGame} disabled={histPos <= 0 || !isMyTurn}
             className="font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-card-border rounded-full px-5 py-2.5 text-text-muted transition-all hover:text-text-main hover:border-text-muted disabled:opacity-40 flex items-center gap-2">
             <ArrowLeft size={13} /> Back
           </button>
@@ -319,14 +524,16 @@ export default function Home() {
             }`}>
             {isSavedGame ? <BookmarkCheck size={13} /> : <Bookmark size={13} />} Save
           </button>
-          <button onClick={nextGame}
-            className="font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-accent rounded-full px-5 py-2.5 text-accent transition-all hover:bg-accent hover:text-bg-base shadow-[0_0_20px_rgba(201,169,110,0.25)] flex-1 min-w-[110px]">
+          <button onClick={nextGame} disabled={!isMyTurn}
+            className="font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-accent rounded-full px-5 py-2.5 text-accent transition-all hover:bg-accent hover:text-bg-base disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(201,169,110,0.25)] flex-1 min-w-[110px]">
             Next Card
           </button>
-          <button onClick={invite}
-            className="font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-accent-alt rounded-full px-5 py-2.5 text-accent-alt transition-all hover:bg-accent-alt hover:text-white flex items-center gap-2">
-            <Share2 size={13} /> {inviteText}
-          </button>
+          {onlineRoomId && (
+            <button onClick={invite}
+              className="font-sans text-[0.68rem] tracking-[0.14em] uppercase border border-accent-alt rounded-full px-5 py-2.5 text-accent-alt transition-all hover:bg-accent-alt hover:text-white flex items-center gap-2">
+              <Share2 size={13} /> {inviteText}
+            </button>
+          )}
         </div>
 
         <div className="w-full max-w-[360px] mt-8">
