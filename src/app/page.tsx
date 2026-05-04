@@ -39,7 +39,7 @@ export default function Home() {
   const [p1, setP1] = useState("");
   const [p2, setP2] = useState("");
   const [gameStarted, setGameStarted] = useState(false);
-  const [history, setHistory] = useState<number[]>([]);
+  const [history, setHistory] = useState<string[]>([]);
   const [histPos, setHistPos] = useState(-1);
   const [flipped, setFlipped] = useState(false);
   const [player, setPlayer] = useState<1 | 2>(1);
@@ -104,26 +104,25 @@ export default function Home() {
   // Derived
   const filtered = filter === "ALL" ? all : all.filter(q => (q.displayCategory ?? "") === filter);
   const browseQ = filtered[browseIdx] ?? null;
-  const gameQ = histPos >= 0 && history.length ? all[history[histPos]] ?? null : null;
+  const gameQ = histPos >= 0 && history.length ? all.find(q => q.id === history[histPos]) ?? null : null;
   const isSavedBrowse = browseQ ? saved.some(s => s.id === browseQ.id) : false;
   const isSavedGame = gameQ ? saved.some(s => s.id === gameQ.id) : false;
 
   const toggleSave = (q: Question) =>
     setSaved(prev => prev.some(s => s.id === q.id) ? prev.filter(s => s.id !== q.id) : [...prev, q]);
 
-  const getNextAvailableIndex = (currentHistory: number[], desiredIntensity: number | "random") => {
-    const validIndices = all
-      .map((q, i) => ({ i, q }))
-      .filter(({ q }) => desiredIntensity === "random" || q.intensity === desiredIntensity)
-      .map(({ i }) => i);
-    const avail = validIndices.filter(i => !currentHistory.includes(i));
-    return avail.length ? avail[Math.floor(Math.random() * avail.length)] : (validIndices.length ? validIndices[Math.floor(Math.random() * validIndices.length)] : Math.floor(Math.random() * all.length));
+  const getNextAvailableId = (currentHistory: string[], desiredIntensity: number | "random") => {
+    const validIds = all
+      .filter(q => desiredIntensity === "random" || q.intensity === desiredIntensity)
+      .map(q => q.id);
+    const avail = validIds.filter(id => !currentHistory.includes(id));
+    return avail.length ? avail[Math.floor(Math.random() * avail.length)] : (validIds.length ? validIds[Math.floor(Math.random() * validIds.length)] : all[Math.floor(Math.random() * all.length)].id);
   };
 
   const nextGame = () => {
     updateFlipped(false);
     setTimeout(() => {
-      const next = getNextAvailableIndex(history, intensityPref);
+      const next = getNextAvailableId(history, intensityPref);
       const newH = [...history.slice(0, histPos + 1), next];
       const newPlayer = player === 1 ? 2 : 1;
       
@@ -190,12 +189,12 @@ export default function Home() {
     if (!p1.trim()) return;
     setOnlineLoading(true);
     const roomId = generateRoomId();
-    const startIdx = getNextAvailableIndex([], intensityPref);
+    const startId = getNextAvailableId([], intensityPref);
     try {
       await setDoc(doc(db, "rooms", roomId), {
         p1: p1.trim(),
         p2: "",
-        history: [startIdx],
+        history: [startId],
         histPos: 0,
         flipped: false,
         player: 1,
@@ -232,8 +231,8 @@ export default function Home() {
 
   const startLocalGame = () => {
     if (!p1.trim() || !p2.trim()) return;
-    const startIdx = getNextAvailableIndex([], intensityPref);
-    setHistory([startIdx]);
+    const startId = getNextAvailableId([], intensityPref);
+    setHistory([startId]);
     setHistPos(0);
     setGameStarted(true);
   };
