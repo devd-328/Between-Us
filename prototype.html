@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between Us — Question Cards</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            font-family: inherit;
+        }
+
+        :root {
+            --bg: #0d0b0f;
+            --bg2: #141118;
+            --bg3: #1c1825;
+            --card-bg: #1a1622;
+            --card-border: #2e2740;
+            --accent: #c9a96e;
+            --accent2: #9b6fa8;
+            --text: #e8e0f0;
+            --text-muted: #7a6e8a;
+            --text-dim: #4a4358;
+            --rose: #c4748a;
+            --p1: #c9a96e;
+            --p2: #9b6fa8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Jost', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Noise + vignette overlays */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ────── SETUP SCREEN ────── */
+        .setup-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .setup-screen.hidden {
+            animation: fadeOut 0.5s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .setup-box {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            animation: riseIn 0.7s ease both;
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .setup-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .setup-sub {
+            font-size: 0.68rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+        }
+
+        .divider-line {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 1.2rem auto 2.5rem;
+        }
+
+        .setup-prompt {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .player-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 2rem;
+        }
+
+        .player-input-wrap {
+            position: relative;
+        }
+
+        .player-dot {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .player-input {
+            width: 100%;
+            background: var(--bg2);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px 16px 14px 36px;
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .player-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .player-input:focus {
+            border-color: var(--text-muted);
+            box-shadow: 0 0 0 3px rgba(155, 111, 168, 0.12);
+        }
+
+        .start-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            padding: 14px 24px;
+            color: var(--accent);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .start-btn:hover::before {
+            opacity: 1;
+        }
+
+        .start-btn:hover {
+            color: #0d0b0f;
+        }
+
+        .start-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ────── MAIN APP ────── */
+        .app {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            padding: 2.5rem 1.5rem 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease 0.4s;
+        }
+
+        .app.visible {
+            opacity: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .header-divider {
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0.8rem auto;
+        }
+
+        /* Turn indicator */
+        .turn-bar {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 2rem;
+            background: var(--bg2);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            padding: 5px;
+        }
+
+        .turn-player {
+            flex: 1;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .turn-player.active-p1 {
+            background: rgba(201, 169, 110, 0.15);
+            color: var(--p1);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+        }
+
+        .turn-player.active-p2 {
+            background: rgba(155, 111, 168, 0.15);
+            color: var(--p2);
+            border: 1px solid rgba(155, 111, 168, 0.3);
+        }
+
+        .turn-player:not(.active-p1):not(.active-p2) {
+            color: var(--text-dim);
+            border: 1px solid transparent;
+        }
+
+        /* Category tabs */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 2rem;
+            background: var(--bg2);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            padding: 5px;
+        }
+
+        .tab {
+            padding: 7px 15px;
+            border-radius: 100px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab.active {
+            background: var(--card-border);
+            color: var(--accent);
+        }
+
+        .tab:hover:not(.active) {
+            color: var(--text);
+        }
+
+        /* Card */
+        .card-scene {
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1.4;
+            max-height: 52vh;
+            perspective: 1400px;
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .card-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transition: transform 0.75s cubic-bezier(0.35, 0.15, 0.15, 1);
+            -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.35, 0.15, 0.15, 1), transform 0.75s cubic-bezier(0.35, 0.15, 0.15, 1);
+            cursor: pointer;
+        }
+
+        .card-wrapper.flipped {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        .card-back {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.8rem;
+        }
+
+        .card-back-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            background-image:
+                repeating-linear-gradient(45deg, var(--accent2) 0, var(--accent2) 1px, transparent 0, transparent 50%),
+                repeating-linear-gradient(-45deg, var(--accent2) 0, var(--accent2) 1px, transparent 0, transparent 50%);
+            background-size: 14px 14px;
+        }
+
+        .card-back-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-back-ornament {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dim);
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+        }
+
+        .orb {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent2);
+        }
+
+        .tap-hint {
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            padding: 2.2rem 2rem;
+            position: relative;
+        }
+
+        .card-front-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .card-wrapper.flipped .card-front-glow {
+            opacity: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: auto;
+        }
+
+        .card-category {
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .card-number {
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            color: var(--text-dim);
+        }
+
+        .card-question {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--text);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .footer-line {
+            flex: 1;
+            height: 1px;
+        }
+
+        .footer-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        /* Player ribbon on card */
+        .player-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 60%;
+            border-radius: 0 0 6px 6px;
+            transition: background 0.35s ease;
+        }
+
+        /* Card glow shadow */
+        .card-shadow {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 50px;
+            filter: blur(18px);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: background 0.35s ease;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            padding: 10px 22px;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            background: transparent;
+            color: var(--text-muted);
+        }
+
+        .btn:hover {
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+
+        .btn-next {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-next:hover {
+            background: var(--accent);
+            color: #0d0b0f;
+            box-shadow: 0 0 22px rgba(201, 169, 110, 0.28);
+        }
+
+        .btn-switch {
+            border-color: var(--accent2);
+            color: var(--accent2);
+        }
+
+        .btn-switch:hover {
+            background: var(--accent2);
+            color: #fff;
+            box-shadow: 0 0 22px rgba(155, 111, 168, 0.28);
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            max-width: 360px;
+            margin-top: 2.2rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            letter-spacing: 0.14em;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 2px;
+            background: var(--card-border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent2), var(--accent));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        /* Stats */
+        .stats {
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            gap: 8px;
+            margin-top: 1.4rem;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: var(--bg2);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            text-align: center;
+        }
+
+        .stat-name {
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stat-count {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+        }
+
+        /* Saved section */
+        .saved-section {
+            width: 100%;
+            max-width: 360px;
+            margin-top: 3rem;
+        }
+
+        .saved-header {
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .saved-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+
+        .saved-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .saved-item {
+            background: var(--bg2);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .saved-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .saved-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--text);
+            flex: 1;
+        }
+
+        .saved-meta {
+            font-size: 0.57rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-top: 4px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .unsave-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            padding: 2px;
+            transition: color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .unsave-btn:hover {
+            color: #c4748a;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--bg3);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            padding: 10px 22px;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 200;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Reset link */
+        .reset-link {
+            margin-top: 3rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.2s;
+        }
+
+        .reset-link:hover {
+            color: var(--rose);
+        }
+
+        /* ────── RESPONSIVE DESKTOP ────── */
+        @media (min-width: 768px) {
+            .setup-box { max-width: 500px; }
+            .setup-logo { font-size: 3.5rem; }
+            .setup-sub { font-size: 0.8rem; margin-bottom: 3.5rem; }
+            .player-input { font-size: 1.2rem; padding: 16px 20px 16px 42px; }
+            .start-btn { font-size: 0.8rem; padding: 16px 28px; }
+
+            .app {
+                max-width: 960px;
+                padding: 4rem 2rem 6rem;
+                display: grid;
+                grid-template-columns: minmax(340px, 420px) minmax(320px, 380px);
+                column-gap: 4rem;
+                justify-content: center;
+                align-items: start;
+            }
+            .header, .turn-bar, .tabs {
+                grid-column: 1 / -1;
+                justify-self: center;
+            }
+            .header { margin-bottom: 2.5rem; }
+            .logo { font-size: 2.2rem; }
+            .turn-bar { max-width: 500px; margin-bottom: 2.5rem; padding: 8px; }
+            .turn-player { font-size: 0.75rem; padding: 12px 20px; }
+            .tabs { margin-bottom: 3.5rem; padding: 8px; gap: 8px; }
+            .tab { font-size: 0.75rem; padding: 12px 24px; }
+            
+            .card-scene {
+                grid-column: 1;
+                grid-row: 4 / 10;
+                justify-self: end;
+                width: 100%;
+                max-width: 420px;
+                max-height: none;
+                margin-bottom: 0;
+            }
+            .card-question { font-size: 2rem; padding: 2.5rem 0; }
+            .card-back-logo { font-size: 1.6rem; }
+            
+            .actions {
+                grid-column: 2;
+                grid-row: 4;
+                justify-self: start;
+                justify-content: flex-start;
+                margin-top: 0;
+            }
+            .btn { font-size: 0.75rem; padding: 12px 24px; }
+            
+            .progress-bar {
+                grid-column: 2;
+                grid-row: 5;
+                justify-self: start;
+                margin-top: 2.5rem;
+                max-width: 100%;
+            }
+            .stats {
+                grid-column: 2;
+                grid-row: 6;
+                justify-self: start;
+                margin-top: 2rem;
+                max-width: 100%;
+            }
+            .stat-count { font-size: 1.8rem; }
+            
+            .saved-section {
+                grid-column: 2;
+                grid-row: 7;
+                justify-self: start;
+                margin-top: 2.5rem;
+                max-width: 100%;
+            }
+            .reset-link {
+                grid-column: 2;
+                grid-row: 8;
+                justify-self: start;
+                margin-top: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SETUP SCREEN -->
+    <div class="setup-screen" id="setup">
+        <div class="setup-box">
+            <div class="setup-logo">Between Us</div>
+            <div class="setup-sub">A card game for real conversations</div>
+            <div class="divider-line"></div>
+            <div class="setup-prompt">Who's playing tonight?</div>
+            <div class="player-inputs">
+                <div class="player-input-wrap">
+                    <div class="player-dot" style="background: var(--p1)"></div>
+                    <input class="player-input" id="p1-name" placeholder="Your name" maxlength="20" />
+                </div>
+                <div class="player-input-wrap">
+                    <div class="player-dot" style="background: var(--p2)"></div>
+                    <input class="player-input" id="p2-name" placeholder="Their name" maxlength="20" />
+                </div>
+            </div>
+            <button class="start-btn" onclick="startGame()"><span>Begin →</span></button>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div class="app" id="app">
+
+        <div class="header">
+            <div class="logo">Between Us</div>
+            <div class="header-divider"></div>
+        </div>
+
+        <!-- Turn indicator -->
+        <div class="turn-bar">
+            <div class="turn-player" id="turn-p1" onclick="setTurn(1)"></div>
+            <div class="turn-player" id="turn-p2" onclick="setTurn(2)"></div>
+        </div>
+
+        <!-- Category tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="setCategory('all', this)">All</button>
+            <button class="tab" onclick="setCategory('deep', this)">Deep</button>
+            <button class="tab" onclick="setCategory('fun', this)">Fun</button>
+            <button class="tab" onclick="setCategory('memory', this)">Memory</button>
+        </div>
+
+        <!-- Card -->
+        <div class="card-scene">
+            <div class="card-wrapper" id="card" onclick="flipCard()">
+                <div class="card-face card-back">
+                    <div class="card-back-pattern"></div>
+                    <div class="card-back-logo">Between Us</div>
+                    <div class="card-back-ornament">
+                        <div class="orb"></div>
+                        <span>tap to reveal</span>
+                        <div class="orb"></div>
+                    </div>
+                    <div class="tap-hint">A question awaits</div>
+                </div>
+                <div class="card-face card-front" id="card-front">
+                    <div class="player-ribbon" id="card-ribbon"></div>
+                    <div class="card-front-glow" id="card-glow"></div>
+                    <div class="card-meta">
+                        <span class="card-category" id="card-cat">Deep</span>
+                        <span class="card-number" id="card-num">01 / 40</span>
+                    </div>
+                    <div class="card-question" id="card-q">What feeling have you never been able to put into words?
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-line" id="footer-line-l"
+                            style="background: linear-gradient(90deg, transparent, #2e2740)"></div>
+                        <div class="footer-dot" id="footer-dot" style="background: var(--accent)"></div>
+                        <div class="footer-line" id="footer-line-r"
+                            style="background: linear-gradient(90deg, #2e2740, transparent)"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-shadow" id="card-shadow"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn" onclick="prevCard()">← Back</button>
+            <button class="btn" onclick="saveCard()">Save ✦</button>
+            <button class="btn btn-next" onclick="nextCard()">Next →</button>
+            <button class="btn btn-switch" onclick="switchTurn()">Switch ⇄</button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-bar">
+            <div class="progress-label">
+                <span id="progress-name">Cards explored</span>
+                <span id="progress-text">0 of 40</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Per-player stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-name" id="stat-p1-name" style="color: var(--p1)">Player 1</div>
+                <div class="stat-count" id="stat-p1-count" style="color: var(--p1)">0</div>
+            </div>
+            <div class="stat-card" style="border-color: var(--card-border)">
+                <div class="stat-name" style="color: var(--text-muted)">Total</div>
+                <div class="stat-count" id="stat-total" style="color: var(--text)">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-name" id="stat-p2-name" style="color: var(--p2)">Player 2</div>
+                <div class="stat-count" id="stat-p2-count" style="color: var(--p2)">0</div>
+            </div>
+        </div>
+
+        <!-- Saved -->
+        <div class="saved-section" id="saved-section" style="display:none">
+            <div class="saved-header">Saved for later</div>
+            <div class="saved-list" id="saved-list"></div>
+        </div>
+
+        <button class="reset-link" onclick="resetGame()">Change players</button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const ALL_QUESTIONS = [
+            { q: "What feeling have you never been able to put into words?", cat: "deep" },
+            { q: "Which version of yourself do you miss the most?", cat: "deep" },
+            { q: "What's something you've outgrown but still miss?", cat: "deep" },
+            { q: "When do you feel most like yourself?", cat: "deep" },
+            { q: "Is there something you want but are afraid to admit you want?", cat: "deep" },
+            { q: "What does home feel like to you — not a place, but a feeling?", cat: "deep" },
+            { q: "Who has loved you in a way that changed how you love others?", cat: "deep" },
+            { q: "What do you think about right before falling asleep?", cat: "deep" },
+            { q: "What's a belief you held for a long time before finally letting go?", cat: "deep" },
+            { q: "What do you think your past self would be most surprised about you now?", cat: "deep" },
+            { q: "If you could describe your inner world as a place, what does it look like?", cat: "deep" },
+            { q: "What do you want people to feel when they're around you?", cat: "deep" },
+            { q: "What's something you're slowly learning to forgive yourself for?", cat: "deep" },
+            { q: "Which relationship in your life do you feel most understood in?", cat: "deep" },
+            { q: "What do you wish people asked you more often?", cat: "deep" },
+            { q: "What's the bravest thing you've ever quietly done?", cat: "deep" },
+            { q: "What's a version of the future you've had to mourn?", cat: "deep" },
+            { q: "What do you think your energy says about you before you even speak?", cat: "deep" },
+            { q: "What's a question you're still trying to answer about yourself?", cat: "deep" },
+            { q: "What's something you did once and never told anyone about?", cat: "memory" },
+            { q: "What do you differently now because of someone you've lost?", cat: "deep" },
+            { q: "What's the most honest thing you've ever said to someone you love?", cat: "deep" },
+            { q: "What do you think you'd be doing if your life had taken a very different turn?", cat: "deep" },
+            { q: "If you could relive one afternoon of your life, which would it be?", cat: "memory" },
+            { q: "What's the kindest thing a stranger has ever done for you?", cat: "memory" },
+            { q: "What childhood memory do you return to the most?", cat: "memory" },
+            { q: "Is there a song that feels like it was written for a specific moment in your life?", cat: "memory" },
+            { q: "What would you tell your 14-year-old self right now?", cat: "memory" },
+            { q: "What's something small that has a disproportionately big place in your heart?", cat: "memory" },
+            { q: "What era of your life do you think about most — and why?", cat: "memory" },
+            { q: "What's the last thing that made you laugh until it hurt?", cat: "fun" },
+            { q: "Would you rather know when you'll die or how you'll die — and why?", cat: "fun" },
+            { q: "If you could swap lives with anyone for 24 hours, who and why?", cat: "fun" },
+            { q: "What's a hill you will absolutely die on — no matter how silly?", cat: "fun" },
+            { q: "What's your most irrational fear that you've never quite shaken?", cat: "fun" },
+            { q: "If your personality had a weather pattern, what would it be today?", cat: "fun" },
+            { q: "What's something you've always wanted to try but keep making excuses not to?", cat: "fun" },
+            { q: "What's a compliment you received that you still think about?", cat: "fun" },
+            { q: "Is there a word in another language that perfectly describes how you sometimes feel?", cat: "fun" },
+            { q: "If tonight was your last night on earth, what would you want to do?", cat: "fun" },
+        ];
+
+        const CAT_COLORS = { deep: '#9b6fa8', fun: '#c9a96e', memory: '#c4748a' };
+        const PLAYER_COLORS = { 1: '#c9a96e', 2: '#9b6fa8' };
+
+        let p1 = '', p2 = '', currentTurn = 1, currentCategory = 'all';
+        let usedIds = [], flipped = false, currentCard = null;
+        let saved = [], scores = { 1: 0, 2: 0 }, totalCards = 0;
+        let cardHistory = [], historyPos = -1;
+
+        function startGame() {
+            p1 = document.getElementById('p1-name').value.trim() || 'Player 1';
+            p2 = document.getElementById('p2-name').value.trim() || 'Player 2';
+
+            document.getElementById('turn-p1').textContent = p1;
+            document.getElementById('turn-p2').textContent = p2;
+            document.getElementById('stat-p1-name').textContent = p1;
+            document.getElementById('stat-p2-name').textContent = p2;
+
+            document.getElementById('setup').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('setup').style.display = 'none';
+                document.getElementById('app').classList.add('visible');
+            }, 500);
+
+            setTurn(1);
+            nextCard();
+        }
+
+        function setTurn(n) {
+            currentTurn = n;
+            const p1El = document.getElementById('turn-p1');
+            const p2El = document.getElementById('turn-p2');
+            p1El.className = 'turn-player' + (n === 1 ? ' active-p1' : '');
+            p2El.className = 'turn-player' + (n === 2 ? ' active-p2' : '');
+
+            updateCardColors();
+        }
+
+        function switchTurn() {
+            setTurn(currentTurn === 1 ? 2 : 1);
+            showToast(currentTurn === 1 ? p1 + "'s turn" : p2 + "'s turn");
+        }
+
+        function updateCardColors() {
+            const col = PLAYER_COLORS[currentTurn];
+            const ribbon = document.getElementById('card-ribbon');
+            const glow = document.getElementById('card-glow');
+            const shadow = document.getElementById('card-shadow');
+
+            ribbon.style.background = `linear-gradient(90deg, transparent, ${col}, transparent)`;
+            glow.style.background = `radial-gradient(ellipse at top, ${col}12, transparent 70%)`;
+            shadow.style.background = col;
+        }
+
+        function setCategory(cat, el) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            usedIds = [];
+            cardHistory = [];
+            historyPos = -1;
+            updateProgress();
+        }
+
+        function getPool() {
+            return currentCategory === 'all' ? ALL_QUESTIONS :
+                ALL_QUESTIONS.filter(q => q.cat === currentCategory);
+        }
+
+        function nextCard() {
+            const questions = getPool();
+
+            if (historyPos < cardHistory.length - 1) {
+                historyPos++;
+                let pick = questions[cardHistory[historyPos]];
+                currentCard = pick;
+                updateCardDOM(pick, questions.length);
+                return;
+            }
+
+            if (usedIds.length >= questions.length) { 
+                usedIds = []; 
+                cardHistory = []; 
+                historyPos = -1; 
+            }
+
+            let remaining = questions.filter((_, i) => !usedIds.includes(i));
+            let pick = remaining[Math.floor(Math.random() * remaining.length)];
+            let idx = questions.indexOf(pick);
+            
+            usedIds.push(idx);
+            cardHistory.push(idx);
+            historyPos = cardHistory.length - 1;
+            currentCard = pick;
+
+            scores[currentTurn]++;
+            totalCards++;
+            document.getElementById('stat-p1-count').textContent = scores[1];
+            document.getElementById('stat-p2-count').textContent = scores[2];
+            document.getElementById('stat-total').textContent = totalCards;
+
+            updateCardDOM(pick, questions.length);
+        }
+
+        function prevCard() {
+            if (historyPos > 0) {
+                historyPos--;
+                const questions = getPool();
+                let pick = questions[cardHistory[historyPos]];
+                currentCard = pick;
+                updateCardDOM(pick, questions.length);
+            } else {
+                showToast("No previous card");
+            }
+        }
+
+        function updateCardDOM(pick, totalQuestions) {
+            const col = CAT_COLORS[pick.cat] || '#c9a96e';
+            document.getElementById('card-q').textContent = pick.q;
+            document.getElementById('card-cat').textContent = pick.cat.charAt(0).toUpperCase() + pick.cat.slice(1);
+            document.getElementById('card-cat').style.color = col;
+            document.getElementById('card-num').textContent =
+                String(historyPos + 1).padStart(2, '0') + ' / ' + String(totalQuestions).padStart(2, '0');
+            document.getElementById('footer-dot').style.background = col;
+
+            updateProgress();
+            updateCardColors();
+
+            const card = document.getElementById('card');
+            card.classList.remove('flipped');
+            flipped = false;
+            void card.offsetWidth;
+            setTimeout(() => { card.classList.add('flipped'); flipped = true; }, 100);
+        }
+
+        function flipCard() {
+            if (!currentCard) { nextCard(); return; }
+            const card = document.getElementById('card');
+            flipped = !flipped;
+            card.classList.toggle('flipped', flipped);
+        }
+
+        function saveCard() {
+            if (!currentCard) return;
+            if (saved.find(s => s.q === currentCard.q)) {
+                showToast('Already saved'); return;
+            }
+            saved.push({ ...currentCard, by: currentTurn === 1 ? p1 : p2 });
+            renderSaved();
+            showToast('Saved ✦');
+        }
+
+        function renderSaved() {
+            const sec = document.getElementById('saved-section');
+            const list = document.getElementById('saved-list');
+            if (!saved.length) { sec.style.display = 'none'; return; }
+            sec.style.display = 'block';
+            list.innerHTML = saved.map((s, i) => `
+    <div class="saved-item">
+      <div class="saved-dot" style="background:${CAT_COLORS[s.cat] || '#c9a96e'}"></div>
+      <div style="flex:1">
+        <div class="saved-text">${s.q}</div>
+        <div class="saved-meta">
+          <span style="color:${CAT_COLORS[s.cat] || '#c9a96e'}">${s.cat}</span>
+          <span style="color:var(--text-dim)">saved by ${s.by}</span>
+        </div>
+      </div>
+      <button class="unsave-btn" onclick="unsave(${i})">✕</button>
+    </div>
+  `).join('');
+        }
+
+        function unsave(i) {
+            saved.splice(i, 1);
+            renderSaved();
+        }
+
+        function updateProgress() {
+            const questions = getPool();
+            const count = historyPos + 1;
+            const total = questions.length;
+            document.getElementById('progress-text').textContent = count + ' of ' + total;
+            document.getElementById('progress-fill').style.width = (count / total * 100).toFixed(1) + '%';
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        function resetGame() {
+            document.getElementById('setup').style.display = 'flex';
+            document.getElementById('setup').classList.remove('hidden');
+            document.getElementById('app').classList.remove('visible');
+            document.getElementById('card').classList.remove('flipped');
+            usedIds = []; flipped = false; currentCard = null;
+            saved = []; scores = { 1: 0, 2: 0 }; totalCards = 0;
+            document.getElementById('p1-name').value = '';
+            document.getElementById('p2-name').value = '';
+            renderSaved();
+        }
+
+        // Enter key support
+        document.addEventListener('keydown', e => {
+            if (document.getElementById('setup').style.display !== 'none' && document.getElementById('setup').style.display !== '') return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextCard(); }
+            if (e.key === 'ArrowLeft') { flipCard(); }
+        });
+
+        document.getElementById('p2-name').addEventListener('keydown', e => {
+            if (e.key === 'Enter') startGame();
+        });
+        document.getElementById('p1-name').addEventListener('keydown', e => {
+            if (e.key === 'Enter') document.getElementById('p2-name').focus();
+        });
+    </script>
+</body>
+
+</html>

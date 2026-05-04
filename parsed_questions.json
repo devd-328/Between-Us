@@ -1,0 +1,1802 @@
+[
+  {
+    "text": "What’s your comfort food?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite way to spend a weekend?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Morning person or night owl?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What song are you currently obsessed with?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Coffee or tea?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your dream vacation?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s one hobby you wish you had?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite movie of all time?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your go-to outfit?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What makes you instantly happy?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite childhood cartoon?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Do you prefer texting or calling?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite season?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Sweet or salty?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite app?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your biggest pet peeve?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite place to relax?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite smell?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Introvert or extrovert?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite holiday?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite color?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Dogs or cats?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite fast food?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite dessert?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your dream job?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite subject in school?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite memory this year?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite way to pass time?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your lucky charm?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite sport?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite city?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite snack?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Beach or mountains?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite emoji?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite TV show?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your favorite drink?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your guilty pleasure?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite game?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite singer?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "What’s your comfort show?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite childhood toy?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite restaurant?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite holiday tradition?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite day of the week?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite time of day?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite smell from childhood?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite outfit memory?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite photo of yourself?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite gift you received?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "Favorite quote?",
+    "category": "icebreakers",
+    "intensity": 1,
+    "mood": "casual"
+  },
+  {
+    "text": "If animals could talk, which would be the rudest?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your weirdest habit?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were a vegetable, what would you be?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s the dumbest thing you believed as a kid?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were invisible, what would you do first?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest memory?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s the weirdest food combo you like?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you had a useless superpower, what would it be?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your most embarrassing moment?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your life was a meme, which one?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What would your villain name be?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you could prank anyone, who?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s the worst joke you know?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were a cartoon character?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest fear?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you had a theme song?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest nickname?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your pet could roast you?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your most awkward moment?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s the weirdest dream you had?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you swapped lives with me?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest text mistake?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If food had personalities?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest school memory?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What would you do with unlimited pizza?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your most useless talent?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were a meme creator?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest lie?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were a ghost?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest fail?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What would you name your imaginary pet?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your weirdest fear?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were stuck in a cartoon?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest habit?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your brain had ads?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest misunderstanding?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you could rename yourself?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest reaction ever?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your life had laugh tracks?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest argument?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your thoughts were public?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your weirdest craving?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you had a comedy show?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest childhood lie?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If you were a comedian?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest photo?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your laugh was viral?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest excuse?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "If your life was chaos?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "What’s your funniest regret?",
+    "category": "funny",
+    "intensity": 2,
+    "mood": "funny"
+  },
+  {
+    "text": "When do you feel most like yourself?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What scares you about the future?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What does happiness mean to you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest insecurity?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "When did you last feel truly understood?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s something you hide from others?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What motivates you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What drains you emotionally?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest regret?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you value most in life?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your purpose?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "When do you feel lonely?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What does love mean to you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest fear?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes life meaningful?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you overthink the most?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest lesson?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes you cry?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What gives you peace?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you struggle to accept?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want to change?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What holds you back?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What defines success?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you fear losing?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your inner conflict?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What inspires you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest weakness?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you avoid?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you need right now?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you miss?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your emotional trigger?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your comfort?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your biggest dream?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your truth?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you hide?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you crave?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What hurts you most?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What heals you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you regret not doing?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes you feel alive?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you fear emotionally?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you protect?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What defines you?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want people to understand?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you struggle to express?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish for?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes you feel safe?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What’s your emotional need?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want from life?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you seek?",
+    "category": "deep",
+    "intensity": 4,
+    "mood": "deep"
+  },
+  {
+    "text": "What does love feel like to you?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your love language?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your ideal relationship?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What attracts you first?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What turns you off instantly?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your biggest relationship fear?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you expect from a partner?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you feel loved?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What hurts you in relationships?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your green flag?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your red flag?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your toxic trait?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you need emotionally?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your attachment style?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you value most?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your deal breaker?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your romantic fantasy?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you struggle with?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you need reassurance about?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you jealous?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you forgive easily?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you not forgive?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you trust someone?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What breaks trust?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your love story ideal?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you fear in love?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you feel secure?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you feel distant?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you need more of?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you give in love?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you expect in return?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes love last?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What ends love?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What’s your biggest heartbreak?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What did you learn from love?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you want to experience?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What scares you emotionally?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you open up?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What closes you off?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you hide in love?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What do you show?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes love real?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes love fake?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What defines commitment?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What does loyalty mean?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you stay?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you leave?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you vulnerable?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What makes you guarded?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "What does forever mean?",
+    "category": "relationship",
+    "intensity": 5,
+    "mood": "romantic"
+  },
+  {
+    "text": "If you could restart life?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could read minds?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had 1 wish?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were immortal?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could erase a memory?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could relive one day?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were famous?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If money didn’t matter?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could change past?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you switched lives?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had superpowers?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If time stopped?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you knew your future?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you lost everything?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you ruled the world?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had no fear?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could disappear?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were someone else?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could teleport?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had infinite time?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were alone forever?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had one truth?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could fix one thing?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could live anywhere?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were reborn?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could change one choice?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could see thoughts?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had no limits?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you controlled fate?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could pause life?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had ultimate power?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you were invisible forever?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could rewrite life?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could live twice?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could erase pain?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you knew your death date?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had no emotions?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could feel everything?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you controlled time?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had no regrets?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you lost memory?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you knew everything?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could undo mistakes?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had perfect life?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you could control dreams?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you lived in simulation?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If reality changed?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If nothing mattered?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If everything mattered?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "If you had to choose?",
+    "category": "hypothetical",
+    "intensity": 3,
+    "mood": "casual"
+  },
+  {
+    "text": "What keeps you awake at night?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you overthink most?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What scares you silently?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you hide from yourself?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you regret at night?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish you said?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you replay in your mind?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What hurts quietly?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you crave emotionally?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes you feel empty?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you question most?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels unresolved?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you avoid thinking about?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you miss deeply?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want to understand?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What confuses you?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels unfinished?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish you knew?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What makes you restless?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What brings you peace at night?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you fear losing?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels temporary?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels permanent?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you doubt?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you believe?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you feel deeply?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you hide emotionally?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you need clarity on?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want to fix?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish would change?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you think about love?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you think about life?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you think about yourself?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you question about others?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you feel alone in?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish people knew?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want to say?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you hold back?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you fear admitting?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you wish was different?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you dream about?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you imagine?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you fear becoming?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What do you want to become?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels real?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels fake?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What matters most at night?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels meaningless?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels everything?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  },
+  {
+    "text": "What feels nothing?",
+    "category": "late-night",
+    "intensity": 5,
+    "mood": "deep"
+  }
+]

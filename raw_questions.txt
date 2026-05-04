@@ -1,0 +1,300 @@
+1. What’s your comfort food?
+2. What’s your favorite way to spend a weekend?
+3. Morning person or night owl?
+4. What song are you currently obsessed with?
+5. Coffee or tea?
+6. What’s your dream vacation?
+7. What’s one hobby you wish you had?
+8. Favorite movie of all time?
+9. What’s your go-to outfit?
+10. What makes you instantly happy?
+11. Favorite childhood cartoon?
+12. Do you prefer texting or calling?
+13. What’s your favorite season?
+14. Sweet or salty?
+15. What’s your favorite app?
+16. What’s your biggest pet peeve?
+17. Favorite place to relax?
+18. What’s your favorite smell?
+19. Introvert or extrovert?
+20. Favorite holiday?
+21. What’s your favorite color?
+22. Dogs or cats?
+23. Favorite fast food?
+24. Favorite dessert?
+25. What’s your dream job?
+26. Favorite subject in school?
+27. What’s your favorite memory this year?
+28. Favorite way to pass time?
+29. What’s your lucky charm?
+30. Favorite sport?
+31. Favorite city?
+32. What’s your favorite snack?
+33. Beach or mountains?
+34. Favorite emoji?
+35. Favorite TV show?
+36. What’s your favorite drink?
+37. What’s your guilty pleasure?
+38. Favorite game?
+39. Favorite singer?
+40. What’s your comfort show?
+41. Favorite childhood toy?
+42. Favorite restaurant?
+43. Favorite holiday tradition?
+44. Favorite day of the week?
+45. Favorite time of day?
+46. Favorite smell from childhood?
+47. Favorite outfit memory?
+48. Favorite photo of yourself?
+49. Favorite gift you received?
+50. Favorite quote?
+51. If animals could talk, which would be the rudest?
+52. What’s your weirdest habit?
+53. If you were a vegetable, what would you be?
+54. What’s the dumbest thing you believed as a kid?
+55. If you were invisible, what would you do first?
+56. What’s your funniest memory?
+57. What’s the weirdest food combo you like?
+58. If you had a useless superpower, what would it be?
+59. What’s your most embarrassing moment?
+60. If your life was a meme, which one?
+61. What would your villain name be?
+62. If you could prank anyone, who?
+63. What’s the worst joke you know?
+64. If you were a cartoon character?
+65. What’s your funniest fear?
+66. If you had a theme song?
+67. What’s your funniest nickname?
+68. If your pet could roast you?
+69. What’s your most awkward moment?
+70. What’s the weirdest dream you had?
+71. If you swapped lives with me?
+72. What’s your funniest text mistake?
+73. If food had personalities?
+74. What’s your funniest school memory?
+75. What would you do with unlimited pizza?
+76. What’s your most useless talent?
+77. If you were a meme creator?
+78. What’s your funniest lie?
+79. If you were a ghost?
+80. What’s your funniest fail?
+81. What would you name your imaginary pet?
+82. What’s your weirdest fear?
+83. If you were stuck in a cartoon?
+84. What’s your funniest habit?
+85. If your brain had ads?
+86. What’s your funniest misunderstanding?
+87. If you could rename yourself?
+88. What’s your funniest reaction ever?
+89. If your life had laugh tracks?
+90. What’s your funniest argument?
+91. If your thoughts were public?
+92. What’s your weirdest craving?
+93. If you had a comedy show?
+94. What’s your funniest childhood lie?
+95. If you were a comedian?
+96. What’s your funniest photo?
+97. If your laugh was viral?
+98. What’s your funniest excuse?
+99. If your life was chaos?
+100. What’s your funniest regret?
+101. When do you feel most like yourself?
+102. What scares you about the future?
+103. What does happiness mean to you?
+104. What’s your biggest insecurity?
+105. When did you last feel truly understood?
+106. What’s something you hide from others?
+107. What motivates you?
+108. What drains you emotionally?
+109. What’s your biggest regret?
+110. What do you value most in life?
+111. What’s your purpose?
+112. When do you feel lonely?
+113. What does love mean to you?
+114. What’s your biggest fear?
+115. What makes life meaningful?
+116. What do you overthink the most?
+117. What’s your biggest lesson?
+118. What makes you cry?
+119. What gives you peace?
+120. What do you struggle to accept?
+121. What do you want to change?
+122. What holds you back?
+123. What defines success?
+124. What do you fear losing?
+125. What’s your inner conflict?
+126. What inspires you?
+127. What’s your biggest weakness?
+128. What do you avoid?
+129. What do you need right now?
+130. What do you miss?
+131. What’s your emotional trigger?
+132. What’s your comfort?
+133. What’s your biggest dream?
+134. What’s your truth?
+135. What do you hide?
+136. What do you crave?
+137. What hurts you most?
+138. What heals you?
+139. What do you regret not doing?
+140. What makes you feel alive?
+141. What do you fear emotionally?
+142. What do you protect?
+143. What defines you?
+144. What do you want people to understand?
+145. What do you struggle to express?
+146. What do you wish for?
+147. What makes you feel safe?
+148. What’s your emotional need?
+149. What do you want from life?
+150. What do you seek?
+151. What does love feel like to you?
+152. What’s your love language?
+153. What’s your ideal relationship?
+154. What attracts you first?
+155. What turns you off instantly?
+156. What’s your biggest relationship fear?
+157. What do you expect from a partner?
+158. What makes you feel loved?
+159. What hurts you in relationships?
+160. What’s your green flag?
+161. What’s your red flag?
+162. What’s your toxic trait?
+163. What do you need emotionally?
+164. What’s your attachment style?
+165. What do you value most?
+166. What’s your deal breaker?
+167. What’s your romantic fantasy?
+168. What do you struggle with?
+169. What do you need reassurance about?
+170. What makes you jealous?
+171. What do you forgive easily?
+172. What do you not forgive?
+173. What makes you trust someone?
+174. What breaks trust?
+175. What’s your love story ideal?
+176. What do you fear in love?
+177. What makes you feel secure?
+178. What makes you feel distant?
+179. What do you need more of?
+180. What do you give in love?
+181. What do you expect in return?
+182. What makes love last?
+183. What ends love?
+184. What’s your biggest heartbreak?
+185. What did you learn from love?
+186. What do you want to experience?
+187. What scares you emotionally?
+188. What makes you open up?
+189. What closes you off?
+190. What do you hide in love?
+191. What do you show?
+192. What makes love real?
+193. What makes love fake?
+194. What defines commitment?
+195. What does loyalty mean?
+196. What makes you stay?
+197. What makes you leave?
+198. What makes you vulnerable?
+199. What makes you guarded?
+200. What does forever mean?
+201. If you could restart life?
+202. If you could read minds?
+203. If you had 1 wish?
+204. If you were immortal?
+205. If you could erase a memory?
+206. If you could relive one day?
+207. If you were famous?
+208. If money didn’t matter?
+209. If you could change past?
+210. If you switched lives?
+211. If you had superpowers?
+212. If time stopped?
+213. If you knew your future?
+214. If you lost everything?
+215. If you ruled the world?
+216. If you had no fear?
+217. If you could disappear?
+218. If you were someone else?
+219. If you could teleport?
+220. If you had infinite time?
+221. If you were alone forever?
+222. If you had one truth?
+223. If you could fix one thing?
+224. If you could live anywhere?
+225. If you were reborn?
+226. If you could change one choice?
+227. If you could see thoughts?
+228. If you had no limits?
+229. If you controlled fate?
+230. If you could pause life?
+231. If you had ultimate power?
+232. If you were invisible forever?
+233. If you could rewrite life?
+234. If you could live twice?
+235. If you could erase pain?
+236. If you knew your death date?
+237. If you had no emotions?
+238. If you could feel everything?
+239. If you controlled time?
+240. If you had no regrets?
+241. If you lost memory?
+242. If you knew everything?
+243. If you could undo mistakes?
+244. If you had perfect life?
+245. If you could control dreams?
+246. If you lived in simulation?
+247. If reality changed?
+248. If nothing mattered?
+249. If everything mattered?
+250. If you had to choose?
+251. What keeps you awake at night?
+252. What do you overthink most?
+253. What scares you silently?
+254. What do you hide from yourself?
+255. What do you regret at night?
+256. What do you wish you said?
+257. What do you replay in your mind?
+258. What hurts quietly?
+259. What do you crave emotionally?
+260. What makes you feel empty?
+261. What do you question most?
+262. What feels unresolved?
+263. What do you avoid thinking about?
+264. What do you miss deeply?
+265. What do you want to understand?
+266. What confuses you?
+267. What feels unfinished?
+268. What do you wish you knew?
+269. What makes you restless?
+270. What brings you peace at night?
+271. What do you fear losing?
+272. What feels temporary?
+273. What feels permanent?
+274. What do you doubt?
+275. What do you believe?
+276. What do you feel deeply?
+277. What do you hide emotionally?
+278. What do you need clarity on?
+279. What do you want to fix?
+280. What do you wish would change?
+281. What do you think about love?
+282. What do you think about life?
+283. What do you think about yourself?
+284. What do you question about others?
+285. What do you feel alone in?
+286. What do you wish people knew?
+287. What do you want to say?
+288. What do you hold back?
+289. What do you fear admitting?
+290. What do you wish was different?
+291. What do you dream about?
+292. What do you imagine?
+293. What do you fear becoming?
+294. What do you want to become?
+295. What feels real?
+296. What feels fake?
+297. What matters most at night?
+298. What feels meaningless?
+299. What feels everything?
+300. What feels nothing?
