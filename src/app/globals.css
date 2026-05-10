@@ -1,75 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Colors */
-  --color-bg-base: #0d0b0f;
-  --color-bg-panel: #141118;
-  --color-bg-elevated: #1c1825;
-  
-  --color-card-bg: #1a1622;
-  --color-card-border: #2e2740;
-  
-  --color-accent: #c9a96e;
-  --color-accent-alt: #9b6fa8;
-  
-  --color-text-main: #e8e0f0;
-  --color-text-muted: #7a6e8a;
-  --color-text-dim: #4a4358;
-  --color-rose: #c4748a;
-  
-  --color-p1: #c9a96e;
-  --color-p2: #9b6fa8;
+  /* ── Between Us Brand Colors ── */
+  --color-bg-base:     #0A101E;
+  --color-bg-panel:    #0F1829;
+  --color-bg-elevated: #162035;
+
+  --color-card-bg:     #0F1829;
+  --color-card-border: #1e3a5f;
+
+  /* Brand gradient */
+  --color-brand-start: #4A6FA5;
+  --color-brand-mid:   #7B6BBF;
+  --color-brand-end:   #C5B8E8;
+
+  /* Accents */
+  --color-accent:     #9B87D4;   /* brighter purple — was too dim */
+  --color-accent-alt: #D4C8F0;   /* brighter lavender */
+  --color-accent-blue:#6090C8;   /* brighter blue */
+
+  /* Text — boosted for legibility against dark bg */
+  --color-text-main:   #F4F0FF;  /* near-white with lavender tint */
+  --color-text-muted:  #B0B8D0;  /* was #8A93B0 — much brighter */
+  --color-text-dim:    #687090;  /* was #445069 — more visible */
+  --color-rose:        #e08898;  /* Keep for error/save states */
+
+  /* Player colors */
+  --color-p1: #8BAFDF;
+  --color-p2: #C0B0E8;
 
   /* Fonts */
-  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans:     var(--font-sans);
+  --font-serif: var(--font-serif), "Cormorant Garamond", serif;
+  --font-heading:     var(--font-sans);
+  --color-sidebar-ring:     var(--sidebar-ring);
+  --color-sidebar-border:     var(--sidebar-border);
+  --color-sidebar-accent-foreground:     var(--sidebar-accent-foreground);
+  --color-sidebar-accent:     var(--sidebar-accent);
+  --color-sidebar-primary-foreground:     var(--sidebar-primary-foreground);
+  --color-sidebar-primary:     var(--sidebar-primary);
+  --color-sidebar-foreground:     var(--sidebar-foreground);
+  --color-sidebar:     var(--sidebar);
+  --color-chart-5:     var(--chart-5);
+  --color-chart-4:     var(--chart-4);
+  --color-chart-3:     var(--chart-3);
+  --color-chart-2:     var(--chart-2);
+  --color-chart-1:     var(--chart-1);
+  --color-ring:     var(--ring);
+  --color-input:     var(--input);
+  --color-border:     var(--border);
+  --color-destructive:     var(--destructive);
+  --color-accent-foreground:     var(--accent-foreground);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-muted:     var(--muted);
+  --color-secondary-foreground:     var(--secondary-foreground);
+  --color-secondary:     var(--secondary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-primary:     var(--primary);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-popover:     var(--popover);
+  --color-card-foreground:     var(--card-foreground);
+  --color-card:     var(--card);
+  --color-foreground:     var(--foreground);
+  --color-background:     var(--background);
+  --radius-sm:     calc(var(--radius) * 0.6);
+  --radius-md:     calc(var(--radius) * 0.8);
+  --radius-lg:     var(--radius);
+  --radius-xl:     calc(var(--radius) * 1.4);
+  --radius-2xl:     calc(var(--radius) * 1.8);
+  --radius-3xl:     calc(var(--radius) * 2.2);
+  --radius-4xl:     calc(var(--radius) * 2.6);
 }
 
 @layer base {
   :root {
-    --background: #0d0b0f;
-    --foreground: #e8e0f0;
+    --background: #0A101E;
+    --foreground: #F4F0FF;
   }
-  
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    font-size: 17px;
+    @apply font-sans;
   }
 
   body {
-    background: var(--background);
+    /*
+     * Solid deep-navy base — no pseudo-elements that overflow and
+     * cause a clipped right-side strip.
+     */
+    background: #0A101E;
     color: var(--foreground);
     min-height: 100vh;
     min-height: 100dvh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
+    /* overflow-x hidden causes the right-strip bug — keep it but only on body */
+    overflow-x: clip;
     -webkit-tap-highlight-color: transparent;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    @apply bg-background text-foreground;
   }
 
-  /* Noise + vignette overlays */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.7;
+  /* Brand gradient utility */
+  .brand-gradient {
+    background: linear-gradient(135deg, #4A6FA5, #7B6BBF, #C5B8E8);
   }
 
-  body::after {
+  /*
+   * brand-gradient-text: was too dark/transparent.
+   * Use a bright, high-contrast gradient that pops on the dark overlay.
+   */
+  .brand-gradient-text {
+    background: linear-gradient(135deg, #90B8E8 0%, #B09FE0 50%, #D9CFFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-shadow doesn't work with background-clip:text, so use filter glow */
+    filter: drop-shadow(0 0 18px rgba(160, 140, 230, 0.40));
+  }
+
+  .brand-border-gradient {
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .brand-border-gradient::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
-    pointer-events: none;
-    z-index: 0;
+    position: absolute;
+    inset: -1.5px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #4A6FA5, #7B6BBF, #C5B8E8);
+    z-index: -1;
+  }
+  * {
+    @apply border-border outline-ring/50;
   }
 }
 
 @layer utilities {
+  .perspective-1400 {
+    perspective: 1400px;
+  }
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ── Override shadcn defaults — keep dark navy theme always ── */
+:root {
+  --background:             #0A101E;
+  --foreground:             #F4F0FF;
+  --card:                   #0F1829;
+  --card-foreground:        #F4F0FF;
+  --popover:                #0F1829;
+  --popover-foreground:     #F4F0FF;
+  --primary:                #9B87D4;
+  --primary-foreground:     #F4F0FF;
+  --secondary:              #162035;
+  --secondary-foreground:   #B0B8D0;
+  --muted:                  #162035;
+  --muted-foreground:       #B0B8D0;
+  --accent:                 #9B87D4;
+  --accent-foreground:      #F4F0FF;
+  --destructive:            oklch(0.577 0.245 27.325);
+  --border:                 #1e3a5f;
+  --input:                  #162035;
+  --ring:                   #9B87D4;
+  --radius:                 0.625rem;
+  --chart-1:                oklch(0.87 0 0);
+  --chart-2:                oklch(0.556 0 0);
+  --chart-3:                oklch(0.439 0 0);
+  --chart-4:                oklch(0.371 0 0);
+  --chart-5:                oklch(0.269 0 0);
+  --sidebar:                #0F1829;
+  --sidebar-foreground:     #F4F0FF;
+  --sidebar-primary:        #9B87D4;
+  --sidebar-primary-foreground: #F4F0FF;
+  --sidebar-accent:         #162035;
+  --sidebar-accent-foreground:  #B0B8D0;
+  --sidebar-border:         #1e3a5f;
+  --sidebar-ring:           #9B87D4;
+}
+
+.dark {
+  --background:     oklch(0.145 0 0);
+  --foreground:     oklch(0.985 0 0);
+  --card:     oklch(0.205 0 0);
+  --card-foreground:     oklch(0.985 0 0);
+  --popover:     oklch(0.205 0 0);
+  --popover-foreground:     oklch(0.985 0 0);
+  --primary:     oklch(0.922 0 0);
+  --primary-foreground:     oklch(0.205 0 0);
+  --secondary:     oklch(0.269 0 0);
+  --secondary-foreground:     oklch(0.985 0 0);
+  --muted:     oklch(0.269 0 0);
+  --muted-foreground:     oklch(0.708 0 0);
+  --accent:     oklch(0.269 0 0);
+  --accent-foreground:     oklch(0.985 0 0);
+  --destructive:     oklch(0.704 0.191 22.216);
+  --border:     oklch(1 0 0 / 10%);
+  --input:     oklch(1 0 0 / 15%);
+  --ring:     oklch(0.556 0 0);
+  --chart-1:     oklch(0.87 0 0);
+  --chart-2:     oklch(0.556 0 0);
+  --chart-3:     oklch(0.439 0 0);
+  --chart-4:     oklch(0.371 0 0);
+  --chart-5:     oklch(0.269 0 0);
+  --sidebar:     oklch(0.205 0 0);
+  --sidebar-foreground:     oklch(0.985 0 0);
+  --sidebar-primary:     oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground:     oklch(0.985 0 0);
+  --sidebar-accent:     oklch(0.269 0 0);
+  --sidebar-accent-foreground:     oklch(0.985 0 0);
+  --sidebar-border:     oklch(1 0 0 / 10%);
+  --sidebar-ring:     oklch(0.556 0 0);
 }
